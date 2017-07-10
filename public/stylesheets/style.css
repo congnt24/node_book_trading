@@ -1,0 +1,140 @@
+body {
+  max-width: 960px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  vertical-align: middle;
+  margin: auto;
+
+}
+
+header {
+  background: #F8F8F8;
+  padding: 5px;
+  border: solid 1px #E7E7E7;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  height: 70px;
+}
+
+#header-left {
+  float: left;
+  width: 40%;
+}
+#header-right {
+  float: right;
+  width: 60%;
+}
+
+main {
+  margin: auto;
+}
+
+main .desc {
+  text-align: center;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/*table*/
+
+table {
+  width: 100%;
+  text-align: center;
+  border: solid 1px darkgrey;
+}
+table tr {
+
+  height: 30px;
+}
+
+table tr.header {
+  background: #00B7FF;
+}
+
+table tr.row {
+  background: #F8F8F8;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+
+.fa-times {
+  color: red;
+}
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0,0);
+}
+
+.close {
+  float: right;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .2;
+}
+
+ul, menu, dir {
+  display: block;
+  list-style-type: none;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 40px;
+}
+
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+li>a {
+  text-decoration: none;
+  background-color: #eee;
+  margin-right: 2px;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+}

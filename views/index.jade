@@ -1,0 +1,148 @@
+extends layout
+
+block content
+    br
+    div(style='')
+        button#btnyourrequest(class='btn btn-primary') Your trade requests
+        button#btnrequestoforyou(class='btn btn-success' style='margin-left: 10px;') Trade requests for you
+    div(style='display: inline-block;')
+        div#request_container(class='col-md-12 col-sm-6')
+        div#request_container2(class='col-md-12 col-sm-6')
+
+    h1= title
+    if mybook
+        input#booktitle(type='text' placeholder='Book title')
+        input#booklink(type='text' placeholder='Image link')
+        button#addbook(class='btn btn-primary') Add
+    else
+        p Click the 'Trade' to request a trade!
+    div(class='col-md-12')
+        for item in items
+            span(class='col-md-2 col-xs-4' style='margin: 10px; border: 1px solid #ebe;')
+                img(src='#{item.IMAGE}' style='width: 100px;')
+                p= item.TITLE
+                if item.OWNER != username && item.STATE === 0
+                    input(type='submit' value="trade" onclick='$(this).trade("' + item._id + '")')
+
+    script.
+        $(function () {
+            //bind data
+            $.getJSON('/user/yourrequest', function (data) {
+                console.log(data)
+                if (data.status) {
+                    //error
+                } else {
+                    $('#btnyourrequest').text('Your trade requests ('+data.length+')')
+                    data.forEach(function (item) {
+                        $('#request_container').append("<span class='col-md-12 col-sm-3'><span>" + item.TITLE + "</span><span><input type='submit' value='X' onclick='$(this).cancelRequest(\""+item._id+"\")'/></span></span>")
+                    })
+                    $('#request_container').hide()
+                }
+            })
+            $.getJSON('/user/requestforyou', function (data) {
+                console.log(data)
+                if (data.status) {
+                    //error
+                } else {
+                    $('#btnrequestoforyou').text('Trade requests for you ('+data.length+')')
+                    data.forEach(function (item) {
+                        $('#request_container2').append("<span class='col-md-12 col-sm-3'><p>" + item.TITLE + "</span><span><input type='submit' value='X' onclick='$(this).denyRequest(\""+item._id+"\")'/></span><span><input type='submit' value='V' onclick='$(this).acceptRequest(\""+item._id+"\")'/></span></span>")
+                    })
+                    $('#request_container2').hide()
+                }
+            })
+            //bind click for requests button
+            $('#request_container').hide()
+            $('#request_container2').hide()
+            $('#btnyourrequest').on('click', function () {
+                $('#request_container2').hide()
+                $('#request_container').toggle()
+            })
+            $('#btnrequestoforyou').on('click', function () {
+                $('#request_container').hide()
+                $('#request_container2').toggle()
+            })
+
+            //handle trade button
+            $.fn.trade = function (id) {
+                $.getJSON('/user/request?id='+id, function (data) {
+                    try {
+                        data = JSON.parse(data)
+                        if (data.status) {
+                            //error
+                            alert('Please login')
+                        } else {
+                            window.location.href = window.location.href
+                        }
+                    }catch(e) {
+                        window.location.href = window.location.href
+                    }
+                })
+                //request
+            }
+            //handle remove button
+            $.fn.cancelRequest = function(id) {
+                $.getJSON('/user/cancelRequest?id='+id, function (data) {
+                    try {
+                        data = JSON.parse(data)
+                        if (data.status) {
+                            //error
+                            alert('Please login')
+                        } else {
+                            window.location.href = window.location.href
+                        }
+                    } catch (e) {
+                        window.location.href = window.location.href
+                    }
+                })
+            }
+            $.fn.denyRequest = function (id) {
+                $.getJSON('/user/denyRequest?id=' + id, function (data) {
+                    try {
+                        data = JSON.parse(data)
+                        if (data.status) {
+                            //error
+                            alert('Please login')
+                        } else {
+                            window.location.href = window.location.href
+                        }
+                    } catch (e) {
+                        window.location.href = window.location.href
+                    }
+                })
+            }
+
+            $.fn.acceptRequest = function (id) {
+                $.getJSON('/user/acceptRequest?id=' + id, function (data) {
+                    try {
+                        data = JSON.parse(data)
+                        if (data.status) {
+                            //error
+                            alert('Please login')
+                        } else {
+                            window.location.href = window.location.href
+                        }
+                    } catch (e) {
+                        window.location.href = window.location.href
+                    }
+                })
+            }
+
+
+
+
+            $("#sign-in-with-twitter").on("click", function () {
+                window.location.href = "/user/request-token";
+            });
+
+            $('#addbook').on('click', function () {
+                    let title = $('#booktitle').val()
+                    let link = encodeURIComponent($('#booklink').val())
+                if (title != '' && link != '') {
+                    $.getJSON('/user/addbook?title=' + title + '&img=' + link, function (data) {
+                        console.log('success ' + data)
+                        window.location.href = window.location.href
+                    })
+                }
+            })
+        })

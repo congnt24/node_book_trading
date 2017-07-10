@@ -1,0 +1,19 @@
+//
+   Created by apple on 6/29/17.
+
+header
+    div#header-left
+        h3 BookJump
+    div#header-right
+        a(href='/')
+            button(class='btn btn-primary') Home
+        if !isAuthed
+            button#sign-in-with-twitter(class='btn btn-primary') Sign in with Twitter
+        else
+            button(class='btn btn-success') #{username}
+            a(href='/user')
+                button(class='btn btn-primary') My Book
+            a(href='/user/setting')
+                button(class='btn btn-primary') Setting
+            a(href='/user/signout')
+                button(class='btn btn-primary') Sign out

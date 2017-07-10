@@ -1,0 +1,23 @@
+//
+   Created by apple on 7/10/17.
+
+extends layout
+
+block content
+    br
+    h2 Update profile
+    p Address
+    input#input(type='text' placeholder='address' value='#{address}')
+    br
+    button#save Save change
+
+    script.
+        $(function () {
+          $('#save').on('click', function () {
+              let inp = $('#input').val()
+              $.getJSON('/user/savesetting?address='+inp, function (data) {
+                  console.log(data)
+              })
+          })
+        })
+
