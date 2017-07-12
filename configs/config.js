@@ -4,7 +4,7 @@
 var twitter = {
     consumerKey: 'MfcNvul7KcajcQGpy7Qhsm6N3',
     consumerSecret: 'KgTBNwTt1Frc2eJREDVyizpBMjsbgxfg79aRhhDUJYrlwKzjhf',
-    callbackUrl: 'http://localhost:3000/user/access-token'
+    callbackUrl: 'https://congntbooktrading.herokuapp.com/user/access-token'
 }
 
 var googlePlaceKey = 'AIzaSyDZ3Lf6HqFloLrOXrTaY-KmBzYTgBWb5Pk'
